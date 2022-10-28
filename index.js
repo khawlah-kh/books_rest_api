@@ -16,7 +16,7 @@ app.use('/api/books',booksRoute);
 
 
 //Connect to mongodb atlas
-mongoose.connect(process.env.MONGO_URL2,
+mongoose.connect(process.env.MONGO_URL,
 {useNewUrlParser: true}).then(()=>{
     console.log("Connect with mongodb atlas")
 }).catch(error=>{

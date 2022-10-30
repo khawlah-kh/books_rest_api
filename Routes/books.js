@@ -1,14 +1,15 @@
 
 const express = require('express');
 const router = express.Router();
-const Book = require('../Models/books');
+const {Book,validateBook} = require('../Models/books');
 
 
 
 
 //POST: CREATE A NEW BOOK
-router.post('/',(req,res)=>{
-
+router.post('/',async (req,res)=>{
+  let error = await validateBook(req.body);
+  if (error.message) res.status(400).send(error.message);
     book = new Book({
         name: req.body.bookName,
         author:{
@@ -18,6 +19,7 @@ router.post('/',(req,res)=>{
         genre:req.body.genre
     });
 
+   
 book.save().then(book => {
     res.send(book);
 }).catch(error => {

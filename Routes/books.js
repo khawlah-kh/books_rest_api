@@ -41,15 +41,40 @@ router.get('/', (req, res) => {
 
 
 //GET: GET BOOK BY ID
-router.get('/:bookId', (req, res) => {
-    Book.findById(req.params.bookId)
-        .then(book => {
-            if (book) res.send(book)
-            res.status(404).send("Book not found")
-        })
-        .catch((error) => {
-            res.status(500).send("Something went wrong");
-        });
+router.get('/:bookId', async (req, res) => {
+    const book = await Book.findById(req.params.bookId);
+    if (!book) res.status(404).send("Book not found");
+    res.send(book);
 });
+
+// router.get('/:bookId', async(req, res) => {
+//     Book.findById(req.params.bookId)
+//         .then(book => {
+//             if (book) res.send(book);
+//             res.status(404).send("Book not found")
+//         })
+//         .catch((error) => {
+//             res.status(500).send("Something went wrong");
+//         });
+// });
+
+
+//UPDATE : GET BOOK BY ID
+router.put('/:bookId', async (req, res) => {
+    const updatedBook = await Book.findByIdAndUpdate(req.params.bookId, {
+        name: req.body.bookName,
+        author: {
+            name: req.body.authorName,
+            age: req.body.authorAge
+        },
+        genre: req.body.genre
+
+    },
+        { new: true })
+        if (!updatedBook) res.status(404).send("Book not found");
+        res.send(updatedBook);
+
+});
+
 
 module.exports = router; 

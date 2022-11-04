@@ -32,7 +32,6 @@ const logger = winston.createLogger({
 
 //Routes
 app.use('/api/books',booksRoute);
-throw new Error();
 
 
 //Connect to mongodb atlas

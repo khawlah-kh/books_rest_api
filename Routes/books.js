@@ -29,7 +29,6 @@ router.post('/', async (req, res) => {
 });
 
 
-
 //GET: GET ALL BOOKS
 router.get('/', (req, res) => {
     Book.find()
@@ -46,17 +45,6 @@ router.get('/:bookId', async (req, res) => {
     if (!book) res.status(404).send("Book not found");
     res.send(book);
 });
-
-// router.get('/:bookId', async(req, res) => {
-//     Book.findById(req.params.bookId)
-//         .then(book => {
-//             if (book) res.send(book);
-//             res.status(404).send("Book not found")
-//         })
-//         .catch((error) => {
-//             res.status(500).send("Something went wrong");
-//         });
-// });
 
 
 //UPDATE : GET BOOK BY ID
@@ -85,3 +73,20 @@ router.delete('/:bookId', async (req, res) => {
 });
 
 module.exports = router; 
+
+
+
+
+
+
+//Old
+// router.get('/:bookId', async(req, res) => {
+//     Book.findById(req.params.bookId)
+//         .then(book => {
+//             if (book) res.send(book);
+//             res.status(404).send("Book not found")
+//         })
+//         .catch((error) => {
+//             res.status(500).send("Something went wrong");
+//         });
+// });

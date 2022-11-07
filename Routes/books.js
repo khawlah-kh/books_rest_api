@@ -47,7 +47,7 @@ router.get('/:bookId', async (req, res) => {
 });
 
 
-//UPDATE : GET BOOK BY ID
+//UPDATE : UPDATE BOOK BY ID
 router.put('/:bookId', async (req, res) => {
     const updatedBook = await Book.findByIdAndUpdate(req.params.bookId, {
         name: req.body.bookName,

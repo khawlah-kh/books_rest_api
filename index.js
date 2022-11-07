@@ -46,4 +46,4 @@ mongoose.connect(process.env.MONGO_URL,
 
 app.listen(PORT,()=>{
     logger.info(`Server started at PORT: ${PORT}`);
-})
+}) 
